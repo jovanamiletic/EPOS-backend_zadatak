@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0, maximum-scale=1.0, user-scalable=1"
+    />
+    <title>Home</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <div class="form-container">
+      <form id="input_form" method="post">
+        <input type="text" placeholder="Name" name="fullName" />
+        <input type="text" placeholder="Email" name="email" />
+        <input type="text" placeholder="Phone" name="phone" />
+        <input type="button" value="Submit" id="submit" />
+      </form>
+      <div id="success"></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $("#submit").on("click", function (e) {
+        e.preventDefault();
+        $.ajax({
+          url: "http://localhost/forma/server.php",
+          type: "POST",
+          data: $("#input_form").serialize(),
+          success: function (response) {
+            $("#success").text("Form Submit Success");
+          },
+        });
+        $.ajax({
+          url: "http://localhost/forma/server2.php",
+          type: "POST",
+          data: $("#input_form").serialize(),
+          success: function (response) {
+            $("#success").text("Form Submit Success");
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
